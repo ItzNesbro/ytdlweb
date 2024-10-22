@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 const App = () => {
   const [videoUrl, setVideoUrl] = useState('');
   const [downloadIframeUrl, setDownloadIframeUrl] = useState('');
+  const API_URL = import.meta.VITE_API
 
   const handleVideoUrlChange = (e) => {
     setVideoUrl(e.target.value);
