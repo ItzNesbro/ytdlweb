@@ -42,7 +42,7 @@ app.post("/api/summarize", async (req, res) => {
       return res.status(400).json({ error: "Video URL is required" });
     }
 
-    const transcript = await getYouTubeTranscript(videoUrl);
+    const transcript = await getYouTubeTranscript(videoUrl)
     const summary = await summarizeTranscript(transcript);
 
     res.json({ summary });
