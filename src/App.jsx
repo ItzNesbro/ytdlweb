@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 
 const App = () => {
   const [videoUrl, setVideoUrl] = useState('');
   const [downloadIframeUrl, setDownloadIframeUrl] = useState('');
   const [summary, setSummary] = useState('');
   const [error, setError] = useState('');
-const API_URL = 'https://3000-itznesbro-ytdlweb-vitrcm0wp2z.ws-us116.gitpod.io';
+  const API_URL = 'https://3000-itznesbro-ytdlweb-vitrcm0wp2z.ws-us116.gitpod.io';
 
   const handleVideoUrlChange = (e) => {
     setVideoUrl(e.target.value);
-    setError('');
   };
 
   const handleDownloadSubmit = (e) => {
@@ -22,8 +22,8 @@ const API_URL = 'https://3000-itznesbro-ytdlweb-vitrcm0wp2z.ws-us116.gitpod.io';
 
   const handleSummarizeSubmit = async (e) => {
     e.preventDefault();
-    setError('');  // Clear any previous errors
-    setSummary('');  // Clear the summary on new request
+    setError('');
+    setSummary('');
     try {
       const response = await fetch(`${API_URL}/api/summarize`, {
         method: 'POST',
@@ -33,9 +33,8 @@ const API_URL = 'https://3000-itznesbro-ytdlweb-vitrcm0wp2z.ws-us116.gitpod.io';
         body: JSON.stringify({ videoUrl }),
       });
 
-      // Check if the response is okay
       if (!response.ok) {
-        const errorText = await response.text(); // Get error response as text
+        const errorText = await response.text();
         throw new Error(`Error: ${response.status} - ${errorText}`);
       }
 
@@ -49,7 +48,7 @@ const API_URL = 'https://3000-itznesbro-ytdlweb-vitrcm0wp2z.ws-us116.gitpod.io';
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">YTDL & Summarizer</h1>
+      <h1 className="text-2xl font-bold mb-4">YouTube Downloader & Summarizer</h1>
 
       <div className="mb-8">
         <h2 className="text-xl font-semibold mb-2">Download YouTube Video</h2>
@@ -84,7 +83,7 @@ const API_URL = 'https://3000-itznesbro-ytdlweb-vitrcm0wp2z.ws-us116.gitpod.io';
         )}
       </div>
 
-      <div>
+      <div className="mb-8">
         <h2 className="text-xl font-semibold mb-2">Summarize YouTube Video</h2>
         <form onSubmit={handleSummarizeSubmit} className="flex flex-col gap-2">
           <input
@@ -103,16 +102,12 @@ const API_URL = 'https://3000-itznesbro-ytdlweb-vitrcm0wp2z.ws-us116.gitpod.io';
           </button>
         </form>
 
-        {error && (
-          <div className="mt-4 p-4 bg-red-100 text-red-600 rounded-md">
-            <p>{error}</p>
-          </div>
-        )}
+        {error && <p className="text-red-500 mt-4">{error}</p>}
 
         {summary && (
-          <div className="mt-4 p-4 bg-gray-100 rounded-md">
-            <h3 className="font-bold mb-2">Summary:</h3>
-            <p>{summary}</p>
+          <div className="mt-4 bg-gray-100 p-4 rounded-md">
+            <h3 className="text-lg font-semibold mb-2">Summary:</h3>
+            <ReactMarkdown>{summary}</ReactMarkdown>
           </div>
         )}
       </div>
