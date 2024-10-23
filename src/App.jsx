@@ -6,7 +6,7 @@ const App = () => {
   const [downloadIframeUrl, setDownloadIframeUrl] = useState('');
   const [summary, setSummary] = useState('');
   const [error, setError] = useState('');
-  const API_URL = 'https://3000-itznesbro-ytdlweb-vitrcm0wp2z.ws-us116.gitpod.io';
+  const API_URL = 'https://ytdlweb.onrender.com';
 
   const handleVideoUrlChange = (e) => {
     setVideoUrl(e.target.value);
