@@ -6,7 +6,7 @@ const App = () => {
   const [downloadIframeUrl, setDownloadIframeUrl] = useState('');
   const [summary, setSummary] = useState('');
   const [error, setError] = useState('');
-  const API_URL = 'https://ytdlweb.onrender.com';
+  const API_URL = 'https://ytdlweb-apiback-81bf0d2a2101.herokuapp.com';
 
   const handleVideoUrlChange = (e) => {
     setVideoUrl(e.target.value);
